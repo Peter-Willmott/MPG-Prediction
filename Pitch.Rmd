@@ -1,0 +1,65 @@
+---
+title: "MPG Prediction App"
+author: "Peter Willmott"
+date: "December 16, 2018"
+output: slidy_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+
+## What it does
+
+Ever wondered what the MPG of a car is based on certain variables.. Probably not.. but regardless this app does it!
+This is a nice and simple app that uses a linear model to perdict the MPG of a car.
+The app uses the:
+
+- Horsepower
+- Number of Cylinders
+- Weight
+
+To provide a predicted MPG. You can slide and select to your hearts content and the app with update automatically providing you with the MPG.
+
+
+The App - https://peter-willmott.shinyapps.io/car_spec_prediction/
+
+The Repo - https://github.com/Peter-Willmott/MPG-Prediction
+
+
+## The Data - Motor Trend Car Road Test
+
+The app makes use of the 'mtcars' dataset.
+
+### Description
+The data was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption and 10 aspects of automobile design and performance for 32 automobiles (1973–74 models).
+
+### Source
+Henderson and Velleman (1981), Building multiple regression models interactively. Biometrics, 37, 391–411.
+
+### Used
+
+- MPG - Miles/(US) gallon
+- HP - Gross Horsepower
+- Cyl - Number of Cylinders
+- Wt - Weight (1000lbs)
+
+## Variables
+
+```{r cars, echo = TRUE, message=FALSE, warning=FALSE}
+require(car)
+cars_sub <- subset(mtcars, select = c(mpg, hp, cyl, wt))
+summary(cars_sub)
+scatterplotMatrix(~mpg+hp+cyl+wt, data=cars_sub, cex.axis=1.5)
+```
+
+## Nitty Gritty
+
+The application displays the user input controls on the left. These provide sliders and radio buttons to select the required values.
+These values are displayed on the right and updated as they are changed by the user
+
+The right panel shows the output, as stated above it displays the user input values currently selected but it also shows the MPG prediction. This can be seen at the bottom (the final output box). This value gives you a quick prediction of the MPG you could expexct from a car with the selected specs. The simple computation allows the calculation to be done on the fly!
+
+I hope you enjoyed this simple app and have a nice day!!
+
